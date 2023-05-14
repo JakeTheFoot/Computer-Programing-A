@@ -1,0 +1,57 @@
+:root {
+    --black: #000000;
+    --very-dark-grey: #20212c;
+    --dark-grey: #2b2c37;
+    --lines-dark: #3e3f4e;
+    --medium-grey: #828fa3;
+    --lines-light: #f4f7fd;
+    --white: #ffffff;
+    --main-purple: #635fc7;
+    --main-purple-hover: #a8a4ff;
+    --red: #ea5555;
+    --red-hover: #ff9898;
+  }
+
+.nav-bar {
+    justify-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    padding: 0 15px 0 0;
+    height: 97px;
+    border-right: 1px solid var(--black);
+  }
+  
+  .nav-bar-left {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 209px;
+    height: 97px;
+    border-right: 1px solid #e4ebfa;
+  }
+  
+  .logo-expanded {
+    padding-right: 91px;
+  }
+  
+  .nav-bar-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .nav-bar-text {
+    margin: 0px;
+  }
+
+  .nav-bar-btn {
+    width: 164px;
+  }

@@ -5,10 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/typography.css">
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/button.css" />
     <link rel="stylesheet" href="css/checkbox.css" />
     <link rel="stylesheet" href="css/text-fields.css" />
+    <link rel="stylesheet" href="css/dropdown.css" />
+    <link rel="stylesheet" href="css/task-card.css">
+    <link rel="stylesheet" href="css/switch.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/modal.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,107 +25,74 @@
     <title>Document</title>
   </head>
   <body>
-    <! Add modal-subtask-background-expanded to show modal-subtask popup and background-->
-    <div class="modal-background">
-      <div class="modal-popup">
-        <div class="modal-subtask-popup-header">
-          <p class="modal-subtask-popup-header-text header-medium">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi rem
-            delectus adipisci ut molestias reiciendis.
-          </p>
-          <img
-            src="images/icon-vertical-ellipsis.svg"
-            alt=""
-            class="modal-subtask-popup-header-icon"
-          />
+    <div class="modal">
+      <div class="modal-background">
+        <div class="modal-header block-level">
+          <h2 class="header-medium modal-title medium">
+            Research pricing points of various competitors and trial different
+            business models
+          </h2>
+          <img src="images/icon-vertical-ellipsis.svg" alt="more" class="modal-more"/>
         </div>
-        <p class="modal-descriptiion paragraph-medium">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non ratione
-          eos ipsam. Iusto, aperiam aliquid! Lorem ipsum dolor sit amet. Lorem,
-          ipsum dolor. Lorem, ipsum.
+        <p class="subtext thin modal-description">
+          We know what we're planning to build for version one. Now we need to
+          finalise the first pricing model we'll use. Keep iterating the
+          subtasks until we have a coherent proposition.
         </p>
-        <p class="paragraph-medium">Subtasks (2 of 3)</p>
-        <div class="modal-subtask-popup-subtasks-list">
-          <div class="modal-subtask-popup-subtasks-checkbox-box">
-            <input
-              type="checkbox"
-              class="modal-subtask-popup-subtasks-checkbox"
-            />
-            <p
-              class="modal-subtask-popup-subtasks-checkbox-text modal-subtask-popup-subtasks-checkbox-text-selected paragraph-medium"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-          </div>
-          <div class="modal-subtask-popup-subtasks-checkbox-box">
-            <input
-              type="checkbox"
-              class="modal-subtask-popup-subtasks-checkbox"
-            />
-            <p
-              class="modal-subtask-popup-subtasks-checkbox-text modal-subtask-popup-subtasks-checkbox-text-selected paragraph-medium"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-          </div>
-          <div class="modal-subtask-popup-subtasks-checkbox-box">
-            <input
-              type="checkbox"
-              class="modal-subtask-popup-subtasks-checkbox"
-            />
-            <p
-              class="modal-subtask-popup-subtasks-checkbox-text paragraph-medium"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-          </div>
+        <p class="subtext block-level">Subtask (2/3)</p>
+        <div class="checkbox modal-width block-level">
+          <input type="checkbox" class="checkbox-check" />
+          <p class="checkbox-text">Research competitor pricing and business models</p>
         </div>
-        <p class="modal-popup-subtext paragraph-medium">Current Status</p>
-        <select name="Status" class="status-dropdown paragraph-medium">
-          <option value="To-Do">To-Do</option>
-          <option value="Doing">Doing</option>
-          <option value="Done">Done</option>
-        </select>
+        <div class="checkbox modal-width block-level">
+          <input type="checkbox" class="checkbox-check" />
+          <p class="checkbox-text">Outline a business model that works for our solution</p>
+        </div>
+        <div class="checkbox modal-width block-level">
+          <input type="checkbox" class="checkbox-check" />
+          <p class="checkbox-text">Talk to potential customers about our proposed solution and ask for fair price expectancy</p>
+        </div>
+        <div class="modal-top-margin modal-width block-level">
+          <p class="dropdown-title">Current Status</p>
+          <select class="dropdown-select modal-width">
+            <option value="option-1">To-Do</option>
+            <option value="option-2">Doing</option>
+            <option value="option-3">Done</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <! add show-sidebar-expanded to show -->
-    <div class="show-sidebar">
-      <img
-        src="images/icon-show-sidebar.svg"
-        alt=""
-        class="show-sidebar-icon"
-      />
     </div>
     <div class="nav-bar">
       <div class="nav-bar-left">
-        <div class="logo logo-nav-bar-expanded">
+        <div class="logo logo-expanded">
           <img src="images/logo-dark.svg" alt="" />
         </div>
         <h1 class="nav-bar-text header-large">Platform Launch</h1>
       </div>
       <div class="nav-bar-right">
-        <button class="btn">+ Add New Task</button>
+        <button class="btn nav-bar-btn">+ Add New Task</button>
         <img class="elipses" src="images/icon-vertical-ellipsis.svg" alt="" />
       </div>
     </div>
     <div class="board-container">
       <div class="content-columns">
-        <div class="sidebar sidebar-expanded">
+        <div class="sidebar sidebar--expanded">
           <div class="sidebar-top">
-            <p class="paragraph-medium sidebar-top-text">ALL BOARDS (3)</p>
-            <button class="btn sidebar-btn sidebar-top-btn-selected">
-              <img src="images/icon-board.svg" alt="icon" />
+            <h2 class="subtext spaced sidebar-header">ALL BOARDS (3)</h2>
+            <button class="btn sidebar-btn selectable">
+              <img src="images/icon-board.svg" alt="icon" class="btn-icon"/>
               Platform Launch
             </button>
-            <button class="btn sidebar-btn sidebar-top-btn-not-selected">
-              <img src="images/icon-board.svg" alt="icon" />
+            <button class="btn btn--secondary btn--clear sidebar-btn selectable">
+              <img src="images/icon-board.svg" alt="icon" class="btn-icon"/>
               Marketing Plan
             </button>
-            <button class="btn sidebar-btn sidebar-top-btn-not-selected">
-              <img src="images/icon-board.svg" alt="icon" />
+            <button class="btn btn--secondary btn--clear sidebar-btn selectable">
+              <img src="images/icon-board.svg" alt="icon" class="btn-icon"/>
               Roadmap
             </button>
-            <button class="btn sidebar-btn create-new-board">
+            <button class="btn btn--secondary btn--clear sidebar-btn">
+              <img src="images/icon-board.svg" alt="icon" class="btn-icon"/>
               + Create New Board
             </button>
           </div>
@@ -146,150 +120,122 @@
         <div class="content-column">
           <h2 class="content-column-title">Lorem, ipsum.</h2>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
         </div>
         <div class="content-column">
           <h2 class="content-column-title">Similique, dolorum.</h2>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
         </div>
         <div class="content-column">
           <h2 class="content-column-title">Dolorum, nesciunt!</h2>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
           <div class="task-card">
-            <h3 class="header-medium task-card-subtext-header">
-              Lorem, ipsum.
-            </h3>
-            <p class="paragraph-medium task-card-subtext-body">
-              Lorem, ipsum dolor.
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
+            </p>
+          </div>
+          <div class="task-card">
+            <h3 class="header-medium">Your Task</h3>
+            <p class="paragraph-medium">
+              Your Task's description
             </p>
           </div>
         </div>
         <div class="content-column add-column">
-          <p class="header-extra-large add-column-text">+ New Column</p>
+          <h2 class="header-extra-large add-column-text">+ New Column</h2>
         </div>
       </div>
     </div>

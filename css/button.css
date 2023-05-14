@@ -31,6 +31,10 @@
     background-color: rgba(99, 95, 199, 0.1);
     color: var(--main-purple);
   }
+
+  .btn--clear {
+    background-color: white;
+  }
   
   .btn--large {
     width: 255px;
@@ -48,4 +52,8 @@
   
   .btn:hover {
     filter: brightness(125%);
+  }
+
+  .btn-icon {
+    padding-right: 16px;
   }

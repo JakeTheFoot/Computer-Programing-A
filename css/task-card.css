@@ -1,0 +1,38 @@
+:root {
+  --black: #000000;
+  --very-dark-grey: #20212c;
+  --dark-grey: #2b2c37;
+  --lines-dark: #3e3f4e;
+  --medium-grey: #828fa3;
+  --lines-light: #f4f7fd;
+  --white: #ffffff;
+  --main-purple: #635fc7;
+  --main-purple-hover: #a8a4ff;
+  --red: #ea5555;
+  --red-hover: #ff9898;
+}
+
+.task-card {
+  background: var(--white);
+  box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.101545);
+  border-radius: 8px;
+  width: 280px;
+  padding: 23px 16px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.task-card:hover {
+  cursor: pointer;
+  scale: 1.025;
+  box-shadow: 0px 4px 15px rgba(54, 78, 126, 0.101545);;
+}
+
+.task-card > * {
+    margin: 0;
+}
+
+.task-card > h1 {
+    margin-bottom: 8px;
+}

@@ -12,19 +12,16 @@
   --red-hover: #ff9898;
 }
 
-body {
-  background-color: white;
-}
-
 .checkbox {
   background-color: var(--lines-light);
   width: 350px;
-  height: 40px;
+  height: auto;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: left;
   padding-left: 12px;
+  margin-bottom: 8px;
 }
 
 .checkbox:hover {
@@ -36,6 +33,10 @@ body {
   height: 16px;
   accent-color: var(--main-purple);
   margin-right: 16px;
+}
+
+.checkbox-check:hover {
+  cursor: pointer;
 }
 
 .checkbox-text {

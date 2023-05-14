@@ -1,0 +1,76 @@
+:root {
+    --black: #000000;
+    --very-dark-grey: #20212c;
+    --dark-grey: #2b2c37;
+    --lines-dark: #3e3f4e;
+    --medium-grey: #828fa3;
+    --lines-light: #f4f7fd;
+    --white: #ffffff;
+    --main-purple: #635fc7;
+    --main-purple-hover: #a8a4ff;
+    --red: #ea5555;
+    --red-hover: #ff9898;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000082;
+    z-index: 1;
+}
+
+.modal--expanded {
+    display: flex;
+}
+
+.modal-background {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px;
+    width: 416px;
+    height: auto;
+    border-radius: 6px;
+    background-color: var(--white);
+    justify-content: left;
+    z-index: 2;
+}
+
+.modal-width {
+    width: 100%;
+}
+
+.modal-top-margin {
+    margin-top: 24px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.modal-title {
+    width: 387px;
+    margin: 0;
+}
+
+.modal-more {
+    width: 4.62px;
+    height: 20px;
+}
+
+.modal-more:hover {
+    cursor: pointer;
+}
+
+.modal-description {
+    line-height: 23px;
+}
