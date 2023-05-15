@@ -1,3 +1,17 @@
+@import "normalize.css";
+@import "typography.css";
+@import "styles.css";
+@import "button.css";
+@import "checkbox.css";
+@import "text-fields.css";
+@import "dropdown.css";
+@import "task-card.css";
+@import "switch.css";
+@import "sidebar.css";
+@import "navbar.css";
+@import "modal.css";
+@import "main-board.css";
+
 :root {
   --black: #000000;
   --very-dark-grey: #20212c;
