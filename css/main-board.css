@@ -1,4 +1,5 @@
 .main-board {
-    height: auto;
-    
+    display: flex;
+    overflow: scroll;  
+    flex-shrink: 0;
 }
