@@ -16,12 +16,17 @@
   background: var(--white);
   box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.101545);
   width: 300px;
+  min-height: 594px;
   align-self: stretch;
   flex-direction: column;
   justify-content: space-between;
   display: none;
   border-right: 1px solid #e4ebfa;
   flex-shrink: 0;
+}
+
+.sidebar-top {
+  height: 100%;
 }
 
 .sidebar--expanded {
@@ -34,7 +39,7 @@
 
 .sidebar-btn {
   justify-content: left;
-  padding-left: 32px;
+  padding-left: 12px;
   border-radius: 0 20px 20px 0;
 }
 
