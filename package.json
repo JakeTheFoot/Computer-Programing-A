@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.1.0",
+    "react-hook-form": "^7.43.9",
+    "zod": "^3.21.4"
+  }
+}

@@ -46,6 +46,10 @@
   color: var(--medium-grey);
 }
 
+.add-column:hover {
+  scale: 1.025;
+}
+
 .main-board {
   display: none;
   overflow: scroll;

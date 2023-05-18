@@ -111,38 +111,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
-// Add Task Card Code
-
-/*document.addEventListener('DOMContentLoaded', addTaskCard);
-
-function addTaskCard(event) {
-  console.log("addtask function running...");
-  // create a new div element
-  const taskCardBackground = document.createElement("div");
-
-  // and give it some content
-  const taskCardHeader = document.createElement("p");
-  const taskCardHeaderContent = document.createTextNode("Your Task");
-
-  const taskCardSubtext = document.createElement("p");
-  const taskCardSubtextContent = document.createTextNode("Your Tasks Description");
-
-  // add the text node to the newly created div
-  taskCardBackground.classList.add("task-card");
-  taskCardHeader.classList.add("header-medium");
-  taskCardSubtext.classList.add("paragraph-medium");
-  taskCardBackground.appendChild(taskCardHeader);
-  taskCardHeader.appendChild(taskCardHeaderContent);
-  taskCardBackground.appendChild(taskCardSubtext);
-  taskCardSubtext.appendChild(taskCardSubtextContent);
-
-  // add the newly created element and its content into the DOM
-  for(let i = 0; i < 4; i++) {
-    document.getElementById("content-column-1").appendChild(taskCardBackground);
-  }
-}
-*/
-
 const boards = {
   boards: [
     {
@@ -586,9 +554,9 @@ const boards = {
   ],
 };
 
-document.addEventListener("DOMContentLoaded", constructColumns);
+document.addEventListener("DOMContentLoaded", constructBoards);
 
-function constructColumns(event) {
+function constructBoards(event) {
   console.log("constructColumns function running...");
 
   // Board selection panel
