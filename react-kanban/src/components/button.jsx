@@ -20,7 +20,7 @@ const Btn = ({ children, btnSize, btnColor, onClick }) => {
           : "h-[40px] rounded-[20px] text-[14px]"
       } ${
         btnColor === "secondary" ? "text-main-purple dark" : "text-white"
-      } mr-[20px] my-[10px]`}
+      } mr-[20px] my-[10px] font-sans`}
     >
       {children}
     </button>

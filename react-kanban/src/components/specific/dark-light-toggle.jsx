@@ -1,33 +1,50 @@
-import Toggle from "../switch.jsx";
+import Toggle from "../Toggle.jsx";
+import React, { useEffect, useState } from "react";
 import iconLightTheme from "../../images/icon-light-theme.svg";
 import iconDarkTheme from "../../images/icon-dark-theme.svg";
+import PropTypes from "prop-types";
 
 function LightDarkToggle() {
-  // Get the user's theme preference from local storage
-  let darkTheme = false;
+  const [theme, setTheme] = useState(localStorage.getItem("theme") === "true");
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => {
+      const updatedTheme = !prevTheme;
+      localStorage.setItem("theme", updatedTheme.toString());
+      return updatedTheme;
+    });
+
+    // Remove duration-0 and add temporary-class to all elements
+    const allElements = document.querySelectorAll("*");
+    allElements.forEach((el) => {
+      el.classList.remove("duration-0");
+      el.classList.add("duration-300");
+    });
+
+    // Remove the temporary-class and re-add duration-0 after 350ms
+    setTimeout(() => {
+      allElements.forEach((el) => {
+        el.classList.remove("duration-300");
+        el.classList.add("duration-0");
+      });
+    }, 1);
+  };
 
   return (
-    <div className="flex justify-center items-center w-[251px] h-[48px] bg-light-grey dark:bg-very-dark-grey rounded-[6px] ">
-      <img
-        src={iconLightTheme}
-        alt="Light Theme"
-        className="w-[18.33px] h-[18.33px] mr-[15.67px]"
-      ></img>
-      <Toggle
-        onClick={() => {
-          document.documentElement.classList.toggle("dark");
-          darkTheme = !darkTheme;
-        }}
-        checked={darkTheme}
-        className="m-0"
-      ></Toggle>
-      <img
-        src={iconDarkTheme}
-        alt="Dark Theme"
-        className="w-[18.33px] h-[18.33px] ml-[15.67px]"
-      ></img>
+    <div className="flex justify-center items-center w-64 h-12 bg-light-grey dark:bg-very-dark-grey rounded-lg">
+      <img src={iconLightTheme} alt="Light Theme" className="w-5 h-5 mr-4" />
+      <Toggle onClick={toggleTheme} checked={theme} />
+      <img src={iconDarkTheme} alt="Dark Theme" className="w-5 h-5 ml-4" />
     </div>
   );
 }
+
+LightDarkToggle.propTypes = {
+  theme: PropTypes.bool,
+};
 
 export default LightDarkToggle;
