@@ -10,7 +10,7 @@ const Dropdown = ({ title, options }) => {
 
   const buttonStyle = isOpen
     ? "border border-main-purple dark:border-main-purple"
-    : "border border-gray-300";
+    : "border border-gray-300 dark:border-medium-grey"; // Applied dark:border-medium-grey here
 
   const dropdownStyle = isOpen
     ? "translate-y-0 opacity-100 scale-100 pointer-events-auto z-50"
@@ -24,7 +24,7 @@ const Dropdown = ({ title, options }) => {
       <div>
         <button
           type="button"
-          className={`inline-flex items-center justify-start w-[350px] h-[40px] rounded-md shadow-sm px-4 bg-white dark:bg-dark-grey dark:text-white dark:border-medium-grey text-sm font-sans font-medium text-black focus:outline-none ${buttonStyle} transition-all duration-200`}
+          className={`inline-flex items-center justify-start w-[350px] h-[40px] rounded-md shadow-sm px-4 bg-white dark:bg-dark-grey dark:text-white text-sm font-sans font-medium text-black ${buttonStyle} transition-all duration-200`}
           id="options-menu"
           aria-haspopup="true"
           aria-expanded="true"

@@ -23,8 +23,8 @@ const Checkbox = ({ onToggle = () => {}, isChecked = "false", children }) => {
     : "w-4 h-4 rounded-[2px] border flex justify-center items-center pt-[1.5px] pl-[0.2px] bg-white border-lines-light dark:bg-dark-grey dark:border-lines-dark";
 
   const textClasses = checked
-    ? "py-[12.5px] font-[550] font-sans text-[13px] line-through text-gray-400"
-    : "py-[12.5px] font-[550] font-sans text-[13px] text-black dark:text-white";
+    ? "py-[12.5px] font-[550] font-sans text-[12.5px] line-through text-gray-400"
+    : "py-[12.5px] font-[550] font-sans text-[12.5px] text-black dark:text-white";
 
   const handleOnPress = () => setChecked(!checked);
 

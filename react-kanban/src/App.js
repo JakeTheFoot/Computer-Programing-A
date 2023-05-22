@@ -2,6 +2,7 @@ import LightDarkToggle from "./components/specific/Dark-light-toggle";
 import Btn from "./components/Button";
 import Checkbox from "./components/Checkbox";
 import Dropdown from "./components/Dropdown";
+import TextField from "./components/TextField";
 
 function App() {
   return (
@@ -14,10 +15,10 @@ function App() {
       </div>
       <div className="my-4">
         <Btn btnSize="large" btnColor="primary">
-          Button Large
+          Button Primary (L)
         </Btn>
         <Btn btnColor="primary" onClick={() => console.log("Clicked!")}>
-          Button Primary (Click me!)
+          Button Primary (S)
         </Btn>
         <Btn btnColor="secondary">Button Secondary</Btn>
         <Btn btnColor="destructive">Button Destructive</Btn>
@@ -33,6 +34,9 @@ function App() {
           options={["To-Do", "Doing", "Done"]}
           initialState={0}
         ></Dropdown>
+      </div>
+      <div className="my-4">
+        <TextField required={false}>e.g. Make Coffe</TextField>
       </div>
     </div>
   );

@@ -16,8 +16,8 @@ const Btn = ({ children, btnSize, btnColor, onClick }) => {
           : ""
       } w-[255px] font-bold ${
         btnSize === "large"
-          ? "h-[48px] rounded-[24px] text-[16px]"
-          : "h-[40px] rounded-[20px] text-[14px]"
+          ? "h-[48px] rounded-[24px] text-[15px]"
+          : "h-[40px] rounded-[20px] text-[13px]"
       } ${
         btnColor === "secondary" ? "text-main-purple dark" : "text-white"
       } mr-[20px] my-[10px] font-sans`}

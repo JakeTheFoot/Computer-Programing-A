@@ -6,5 +6,15 @@
     "@hookform/resolvers": "^3.1.0",
     "react-hook-form": "^7.43.9",
     "zod": "^3.21.4"
-  }
+  },
+  "name": "kanban-task-management-web-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
