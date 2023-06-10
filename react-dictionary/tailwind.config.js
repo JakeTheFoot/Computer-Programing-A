@@ -4,6 +4,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      boxShadow: {
+        TextSwitch: "0 0 30px 0 rgba(0, 0, 0, 0.1);",
+      },
       colors: {
         purple: "#A445ED",
         red: "#FF5252",

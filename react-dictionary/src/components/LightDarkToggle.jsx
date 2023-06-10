@@ -4,7 +4,7 @@ import iconLightTheme from "../images/icon-moon-grey.svg";
 import iconDarkTheme from "../images/icon-moon-purple.svg";
 import PropTypes from "prop-types";
 
-function LightDarkToggle() {
+function LightDarkToggle({ className }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") === "true");
 
   useEffect(() => {
@@ -35,10 +35,15 @@ function LightDarkToggle() {
   };
 
   return (
-    <div className="flex justify-center items-center w-64 h-12 bg-light-grey dark:bg-very-dark-grey rounded-lg">
-      <img src={iconLightTheme} alt="Light Theme" className="w-5 h-5 mr-4" />
+    <div
+      className={`flex justify-center items-center w-auto h-auto ${className}`}
+    >
       <Toggle onClick={toggleTheme} checked={theme} />
-      <img src={iconDarkTheme} alt="Dark Theme" className="w-5 h-5 ml-4" />
+      <img
+        src={!theme ? iconLightTheme : iconDarkTheme}
+        alt="Light Theme"
+        className="w-5 h-5 ml-[12px]"
+      />
     </div>
   );
 }
