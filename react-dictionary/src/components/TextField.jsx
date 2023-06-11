@@ -10,6 +10,7 @@ function TextField({
 }) {
   const [inputValue, setInputValue] = useState("");
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
 
   const handleInput = (e) => {
     setInputValue(e.target.value);
@@ -27,6 +28,7 @@ function TextField({
   };
 
   const handleFetch = (word) => {
+    setIsFetching(true);
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`, {
       method: "GET",
     })
@@ -39,17 +41,25 @@ function TextField({
       .then((data) => {
         setWordData(data);
         console.log("Success:", data);
+        setTimeout(() => setIsFetching(false), 2000);
       })
       .catch((error) => {
         setWordData(null);
         console.error("Error:", error);
+        setTimeout(() => setIsFetching(false), 2000);
       });
   };
 
   const handleButtonClick = (word) => {
-    setTimeout(() => {
+    if (!isFetching) {
       handleFetch(word);
-    }, 2000);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      handleButtonClick(inputValue);
+    }
   };
 
   return (
@@ -61,6 +71,7 @@ function TextField({
         placeholder={children}
         value={inputValue}
         onChange={handleInput}
+        onKeyDown={handleKeyDown}
         className={`font-${font} w-[calc(100%-15px)] h-[100%] bg-transparent dark:text-white focus:outline-none font-bold text-[16px] px-0`}
       />
       {hasInteracted && !inputValue && required && (

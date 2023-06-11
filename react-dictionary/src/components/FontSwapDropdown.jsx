@@ -65,7 +65,7 @@ const FontSwapDropdown = ({ options, className }) => {
           {selectedOption}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4 ml-auto transition-transform duration-200 ease-in-out transition-text-color ${chevronStyle} ml-[6.5px] mt-[3px] `}
+            className={`h-4 w-4 ml-[10px] transition-transform duration-200 ease-in-out transition-text-color ${chevronStyle} mt-[3px] `}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
