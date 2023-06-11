@@ -375,3 +375,11 @@ template {
     @apply font-inter text-body-s leading-body-s font-body-s underline;
   }
 }
+
+body {
+  @apply bg-white;
+}
+
+.dark body {
+  @apply bg-black;
+}

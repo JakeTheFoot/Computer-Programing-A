@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import searchIcon from "../images/icon-search.svg";
 
-function TextField({ children, required = true, className }) {
+function TextField({
+  children,
+  required = true,
+  className,
+  setWordData,
+  font,
+}) {
   const [inputValue, setInputValue] = useState("");
   const [hasInteracted, setHasInteracted] = useState(false);
 
@@ -20,21 +26,30 @@ function TextField({ children, required = true, className }) {
     }
   };
 
-  const fetch = () => {
-    fetch("https://example.com/api/v1/users", {
+  const handleFetch = (word) => {
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`, {
       method: "GET",
-      headers: {
-        Authorization: "Bearer 1234567890",
-      },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
       .then((data) => {
-        wordData = data;
+        setWordData(data);
+        console.log("Success:", data);
       })
       .catch((error) => {
-        setWordFound(false);
-        console.log("Word Not Found");
+        setWordData(null);
+        console.error("Error:", error);
       });
+  };
+
+  const handleButtonClick = (word) => {
+    setTimeout(() => {
+      handleFetch(word);
+    }, 2000);
   };
 
   return (
@@ -46,7 +61,7 @@ function TextField({ children, required = true, className }) {
         placeholder={children}
         value={inputValue}
         onChange={handleInput}
-        className={`w-[calc(100%-15px)] h-[100%] bg-transparent dark:text-white focus:outline-none font-inter font-bold text-[16px] px-0`}
+        className={`font-${font} w-[calc(100%-15px)] h-[100%] bg-transparent dark:text-white focus:outline-none font-bold text-[16px] px-0`}
       />
       {hasInteracted && !inputValue && required && (
         <p className="absolute left-[0px] bottom-[-32px] text-red leading-[28px]">
@@ -54,8 +69,8 @@ function TextField({ children, required = true, className }) {
         </p>
       )}
       <button
+        onClick={() => handleButtonClick(inputValue)}
         className="w-auto h-auto absolute right-[15px] top-[50%] transform -translate-y-[50%]"
-        onClick={fetch()}
       >
         <img
           src={searchIcon}

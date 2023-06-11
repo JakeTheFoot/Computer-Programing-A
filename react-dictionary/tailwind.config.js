@@ -53,6 +53,9 @@ module.exports = {
         tblt: "768px",
         // => @media (min-width: 768px) { ... }
 
+        tbltL: "1024px",
+        // => @media (min-width: 1024px) { ... }
+
         dskt: "1440px",
         // => @media (min-width: 1440px) { ... }
       },

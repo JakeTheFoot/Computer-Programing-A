@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { interSwap, loraSwap, inconsolataSwap } from "../utils/fontSwap.js";
 
-const LanguageSwapDropdown = ({ options, className }) => {
+const FontSwapDropdown = ({ options, className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
@@ -13,6 +12,39 @@ const LanguageSwapDropdown = ({ options, className }) => {
     ? "translate-y-0 opacity-100 scale-100 pointer-events-auto z-50"
     : "translate-y-1 opacity-0 scale-95 pointer-events-none z-50";
 
+  // Function to swap to Inter
+  const interSwap = () => {
+    const elements = [...document.querySelectorAll("*")].filter(
+      (element) => !element.classList.contains("excludes-font-swap")
+    );
+    elements.forEach((element) => {
+      element.classList.remove("font-lora", "font-inconsolata");
+      element.classList.add("font-inter");
+    });
+  };
+
+  // Function to swap to Lora
+  const loraSwap = () => {
+    const elements = [...document.querySelectorAll("*")].filter(
+      (element) => !element.classList.contains("excludes-font-swap")
+    );
+    elements.forEach((element) => {
+      element.classList.remove("font-inter", "font-inconsolata");
+      element.classList.add("font-lora");
+    });
+  };
+
+  // Function to swap to Inconsolata
+  const inconsolataSwap = () => {
+    const elements = [...document.querySelectorAll("*")].filter(
+      (element) => !element.classList.contains("excludes-font-swap")
+    );
+    elements.forEach((element) => {
+      element.classList.remove("font-inter", "font-lora");
+      element.classList.add("font-inconsolata");
+    });
+  };
+
   return (
     <div className={`relative inline-block text-left ${className}`}>
       <div>
@@ -23,7 +55,7 @@ const LanguageSwapDropdown = ({ options, className }) => {
               ? "font-inter"
               : selectedOption === "Serif"
               ? "font-lora text-[15px] font-bold"
-              : "font-inconsolata text-[17.5px] font-bold"
+              : "font-inconsolata text-[18px] font-bold"
           } font-medium text-black transition-all duration-200`}
           id="options-menu"
           aria-haspopup="true"
@@ -33,7 +65,7 @@ const LanguageSwapDropdown = ({ options, className }) => {
           {selectedOption}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4 ml-auto transition-transform duration-200 ease-in-out transition-text-color ${chevronStyle} ml-[10px] mt-[3px]`}
+            className={`h-4 w-4 ml-auto transition-transform duration-200 ease-in-out transition-text-color ${chevronStyle} ml-[6.5px] mt-[3px] `}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -103,4 +135,4 @@ const LanguageSwapDropdown = ({ options, className }) => {
   );
 };
 
-export default LanguageSwapDropdown;
+export default FontSwapDropdown;
