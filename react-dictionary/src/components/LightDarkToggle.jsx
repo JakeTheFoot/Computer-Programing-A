@@ -4,7 +4,7 @@ import iconLightTheme from "../images/icon-moon-grey.svg";
 import iconDarkTheme from "../images/icon-moon-purple.svg";
 import PropTypes from "prop-types";
 
-function LightDarkToggle({ className }) {
+function LightDarkToggle({ className, setIsDarkMode }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") === "true");
 
   useEffect(() => {
@@ -14,6 +14,7 @@ function LightDarkToggle({ className }) {
   const toggleTheme = () => {
     setTheme((prevTheme) => {
       const updatedTheme = !prevTheme;
+      setIsDarkMode(updatedTheme);
       localStorage.setItem("theme", updatedTheme.toString());
       return updatedTheme;
     });

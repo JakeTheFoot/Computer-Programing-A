@@ -7,10 +7,11 @@ function TextField({
   className,
   setWordData,
   font,
+  isFetching,
+  setIsFetching,
 }) {
   const [inputValue, setInputValue] = useState("");
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [isFetching, setIsFetching] = useState(false);
 
   const handleInput = (e) => {
     setInputValue(e.target.value);
