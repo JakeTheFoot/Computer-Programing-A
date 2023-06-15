@@ -1,5 +1,4 @@
 "use client";
-import "../index.css";
 import React, { useState } from "react";
 
 const Dropdown = ({ title, options }) => {

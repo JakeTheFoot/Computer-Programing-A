@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import "../index.css";
 
 const Toggle = React.memo(({ onClick, checked, className = "", ...props }) => {
   const [isChecked, setIsChecked] = useState(checked);

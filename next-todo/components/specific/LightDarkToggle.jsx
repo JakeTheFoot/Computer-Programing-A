@@ -1,9 +1,6 @@
 "use client";
-import Toggle from "../Toggle.jsx";
+import Toggle from "@/components/Toggle.jsx";
 import React, { useEffect, useState } from "react";
-import iconLightTheme from "../../images/icon-light-theme.svg";
-import iconDarkTheme from "../../images/icon-dark-theme.svg";
-import "../../index.css";
 
 function LightDarkToggle({ className }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") === "true");
