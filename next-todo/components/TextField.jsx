@@ -7,12 +7,28 @@ function TextField({
   className,
   title,
   description = false,
+  formValues,
+  setFormValues,
+  inputValue,
+  setInputValue,
+  hasInteracted,
+  setHasInteracted,
 }) {
-  const [inputValue, setInputValue] = useState("");
-  const [hasInteracted, setHasInteracted] = useState(false);
-
   const handleInput = (e) => {
-    setInputValue(e.target.value);
+    const value = e.target.value;
+    setInputValue(value);
+    if (!description) {
+      setFormValues((prevFormValues) => ({
+        ...prevFormValues,
+        taskName: value.trim(),
+      }));
+    } else {
+      setFormValues((prevFormValues) => ({
+        ...prevFormValues,
+        description: value.trim(),
+      }));
+    }
+    console.log(formValues);
     if (!hasInteracted) {
       setHasInteracted(true);
     }
@@ -30,6 +46,7 @@ function TextField({
         placeholder={children}
         value={inputValue}
         onChange={handleInput}
+        onBlur={handleInput}
         className={`absolute w-[100%] h-[50px] rounded-[4px] bg-white dark:bg-dark-grey dark:text-white border-[1.5px] ${
           hasInteracted && !inputValue && required
             ? "border-red"
@@ -41,11 +58,9 @@ function TextField({
       />
       {hasInteracted && !inputValue && (
         <p
-          className={`absolute right-[20px] ${
-            description ? "right-[-140px]" : ""
-          } top-[43px] text-red ${
-            required ? "" : "hidden"
-          } dark:text-red-dark $}`}
+          className={`absolute ${
+            description ? "right-[-115px]" : "right-[13px]"
+          } top-[43px] text-red ${required ? "" : "hidden"} dark:text-red-dark`}
           style={{ fontSize: "15px", lineHeight: "24px" }}
         >
           Required

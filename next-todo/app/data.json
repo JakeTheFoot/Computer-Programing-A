@@ -1,26 +1,26 @@
 {
     "name": "Jake",
-    "catagorys": [
-        "catagory1",
-        "catagory2",
-        "catagory3"
+    "categories": [
+        "Chores",
+        "Goals",
+        "Calls to make"
     ], 
     "tasks": {
         "task1": {
             "name": "task1",
-            "catagory": "catagory1",
+            "category": "category1",
             "description": "this is task1",
             "completed": false
         },
         "task2": {
             "name": "task2",
-            "catagory": "catagory2",
+            "category": "category2",
             "description": "this is task2",
             "completed": false
         },
         "task3": {
             "name": "task3",
-            "catagory": "catagory3",
+            "category": "category3",
             "description": "this is task3",
             "completed": false
         }

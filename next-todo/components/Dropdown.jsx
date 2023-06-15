@@ -1,11 +1,39 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-const Dropdown = ({ title, options, className }) => {
+function Dropdown({
+  title,
+  options,
+  className,
+  setFormValues,
+  selectedOption,
+  setSelectedOption,
+}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
   const [optionsSaved, setOptionsSaved] = useState(options);
+  const [isEditing, setIsEditing] = useState(-1);
   const [render, forceRender] = useState(false);
+  const [value, setValue] = useState("");
+  const [prevValue, setPrevValue] = useState("");
+
+  const onBlur = (e, target, option, index) => {
+    if (e.target.value !== "" && e.target.value !== option) {
+      if (!optionsSaved.includes(e.target.value)) {
+        optionsSaved[index] = e.target.value;
+        setSelectedOption(e.target.value);
+        setPrevValue(e.target.value);
+      } else if (prevValue === e.target.value) {
+        alert("This option already exists");
+      }
+    }
+    setIsEditing(-1);
+    setIsOpen(false);
+    setValue(e.target.value);
+  };
+
+  // on enter click
+  // if text field is active / focused and enter is clicked
+  // then unfocus the text field and save the value
 
   useEffect(() => {
     setOptionsSaved(options);
@@ -69,24 +97,54 @@ const Dropdown = ({ title, options, className }) => {
             <button
               key={option}
               type="button"
-              className="w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light flex justify-between"
+              className={`w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light flex justify-between ${
+                index === 0 ? "pt-[12px] pb-[30px]" : ""
+              } ${index === optionsSaved.length - 1 ? "pb-[35px]" : ""}`}
               role="menuitem"
               onClick={() => {
                 setSelectedOption(option);
                 setIsOpen(false);
+                setFormValues((prevFormValues) => ({
+                  ...prevFormValues,
+                  category: selectedOption,
+                }));
               }}
             >
-              {option}
+              {isEditing === -1 ? (
+                option
+              ) : isEditing === index ? (
+                <input
+                  className="w-[200px] focus:outline-0 bg-very-light-grey dark:bg-very-dark-grey dark:text-medium-grey dark:hover:text-white"
+                  value={value}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === " ") {
+                      e.preventDefault();
+                      setValue(value + " ");
+                    }
+                    if (e.key === "Enter") {
+                      onBlur(e, e.target, option, index);
+                    }
+                  }}
+                  autoFocus
+                  onChange={(e) => {
+                    setValue(e.target.value);
+                  }}
+                  onBlur={(e) => {
+                    onBlur(e, e.target, option, index);
+                  }}
+                ></input>
+              ) : (
+                option
+              )}
               <div>
                 <button
                   className="z-1 w-[15px] h-[15px]"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setOptionsSaved((prev) => {
-                      let updatedOptions = [...prev];
-                      updatedOptions[index] = "hi";
-                      return updatedOptions;
-                    });
+                    setIsEditing(index);
                     forceRender(!render);
                   }}
                 >
@@ -137,20 +195,20 @@ const Dropdown = ({ title, options, className }) => {
             } flex justify-between`}
             role="menuitem"
             onClick={() => {
-              if (optionsSaved.includes("New Catagory") === false) {
-                setOptionsSaved((prev) => [...prev, "New Catagory"]);
+              if (optionsSaved.includes("New Category") === false) {
+                setOptionsSaved((prev) => [...prev, "New Category"]);
                 forceRender(!render);
               } else {
                 alert("New Task already exists!");
               }
             }}
           >
-            Add New Catagory
+            Add New Category
           </button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Dropdown;

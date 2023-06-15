@@ -36,7 +36,7 @@ function LightDarkToggle({ className }) {
     <div
       className={`flex justify-center items-center w-[200px] h-12 bg-light-grey dark:bg-very-dark-grey rounded-lg ${className}`}
     >
-      <p className="font-bold mr-[5px] dark:text-white">Dark Mode</p>
+      <p className="font-medium mr-[15px] dark:text-white">Dark Mode</p>
       <Toggle onClick={toggleTheme} checked={theme} />
     </div>
   );
