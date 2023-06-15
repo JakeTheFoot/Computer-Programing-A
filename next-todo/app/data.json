@@ -1,0 +1,28 @@
+{
+    "name": "Jake",
+    "catagorys": [
+        "catagory1",
+        "catagory2",
+        "catagory3"
+    ], 
+    "tasks": {
+        "task1": {
+            "name": "task1",
+            "catagory": "catagory1",
+            "description": "this is task1",
+            "completed": false
+        },
+        "task2": {
+            "name": "task2",
+            "catagory": "catagory2",
+            "description": "this is task2",
+            "completed": false
+        },
+        "task3": {
+            "name": "task3",
+            "catagory": "catagory3",
+            "description": "this is task3",
+            "completed": false
+        }
+    }
+}
