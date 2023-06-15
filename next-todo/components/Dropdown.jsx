@@ -99,7 +99,7 @@ function Dropdown({
               type="button"
               className={`w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light flex justify-between ${
                 index === 0 ? "pt-[12px] pb-[30px]" : ""
-              } ${index === optionsSaved.length - 1 ? "pb-[35px]" : ""}`}
+              }`}
               role="menuitem"
               onClick={() => {
                 setSelectedOption(option);
@@ -165,7 +165,12 @@ function Dropdown({
                     e.stopPropagation();
                     setOptionsSaved((prev) => {
                       let updatedOptions = [...prev];
-                      updatedOptions.splice(index, 1);
+                      if (
+                        confirm(
+                          "Are you sure you want to delete this catagory? All tasks in this catagory will be uncategorized."
+                        )
+                      )
+                        updatedOptions.splice(index, 1);
                       return updatedOptions;
                     });
                     forceRender(!render);
@@ -186,13 +191,29 @@ function Dropdown({
             </button>
           ))}
           <button
+            key={"Uncategorized"}
+            type="button"
+            className={`w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light flex justify-between pb-[35px]`}
+            role="menuitem"
+            onClick={() => {
+              setSelectedOption("Uncategorized");
+              setIsOpen(false);
+              setFormValues((prevFormValues) => ({
+                ...prevFormValues,
+                category: selectedOption,
+              }));
+            }}
+          >
+            Uncategorized
+          </button>
+          <button
             key={"add-new"}
             type="button"
-            className={`block w-[295px] h-[37px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light bg-grey dark:bg-super-dark-grey rounded-ee-[8px] rounded-es-[8px] ${
+            className={`block w-[295px] h-[45px] text-left px-4 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light bg-grey dark:bg-super-dark-grey rounded-ee-[8px] rounded-es-[8px] ${
               optionsSaved.length === 0
                 ? "rounded-be-[8px] rounded-bs-[8px]"
                 : ""
-            } flex justify-between`}
+            } flex justify-between items-center`}
             role="menuitem"
             onClick={() => {
               if (optionsSaved.includes("New Category") === false) {

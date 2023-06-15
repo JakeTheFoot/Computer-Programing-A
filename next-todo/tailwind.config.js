@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,6 +7,14 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      gridTemplateColumns: {
+        // Define the columns to be 2fr 1fr 1fr
+        custom: "2fr 1fr 1fr",
+      },
+      width: {
+        // Define the width of the grid
+        grid: "600px",
+      },
       colors: {
         black: "#000000",
         "super-dark-grey": "#1A1B26",
@@ -27,5 +34,19 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  variants: {},
+  plugins: [
+    function ({ addUtilities, e }) {
+      const utilities = {};
+
+      for (let i = 1; i <= 100; i++) {
+        // Generating up to 100 for example, change as needed
+        utilities[`.${e(`grid-rows-${i}`)}`] = {
+          "grid-template-rows": `repeat(${i}, auto)`,
+        };
+      }
+
+      addUtilities(utilities);
+    },
+  ],
 };
