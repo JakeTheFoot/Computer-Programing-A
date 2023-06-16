@@ -10,6 +10,7 @@ import DropdownSelectCatagory from "@/components/DropdownSelectCatagory.jsx";
 import { useSpring, animated } from "react-spring";
 
 const Todo = () => {
+  // Form States
   const options = data.categories;
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [titleInputValue, setTitleInputValue] = useState("");
@@ -23,10 +24,12 @@ const Todo = () => {
     description: "",
   });
 
+  // Delete Button States
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [buttonY, setButtonY] = useState(0);
   const [remainingScrollHeight, setRemainingScrollHeight] = useState(0);
   const [tension, setTension] = useState(150);
+  let height = 0;
 
   const { y } = useSpring({
     y: buttonY,
@@ -57,8 +60,6 @@ const Todo = () => {
       setTension(150);
     }, 200);
   };
-
-  let height = 0;
 
   useEffect(() => {
     const element = document.getElementById("table");
