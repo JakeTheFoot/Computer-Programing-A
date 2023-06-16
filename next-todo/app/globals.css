@@ -363,3 +363,28 @@ body {
 .dark body {
   @apply bg-black;
 }
+
+@keyframes fadeMoveUp {
+  from {
+    transform: translateY(75px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeMoveDown {
+  from {
+    transform: translateY(-75px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.fade-move-up {
+  animation: fadeMoveUp 0.1s ease-out;
+}
+
+.fade-move-down {
+  animation: fadeMoveDown 0.1s ease-out;
+}

@@ -15,22 +15,26 @@ function LightDarkToggle({ className }) {
       localStorage.setItem("theme", updatedTheme.toString());
       return updatedTheme;
     });
-
-    // Remove duration-0 and add temporary-class to all elements
-    const allElements = document.querySelectorAll("*");
-    allElements.forEach((el) => {
-      el.classList.remove("duration-0");
-      el.classList.add("duration-300");
-    });
-
-    // Remove the temporary-class and re-add duration-0 after 350ms
-    setTimeout(() => {
-      allElements.forEach((el) => {
-        el.classList.remove("duration-300");
-        el.classList.add("duration-0");
-      });
-    }, 1);
   };
+
+  // Remove duration-0 and add temporary-class to all elements
+  const allElements = document.querySelectorAll("*");
+  allElements.forEach((element) => {
+    if (!element.id.startsWith("Table-Checkbox-")) {
+      element.classList.remove("duration-0");
+      element.classList.add("duration-300");
+    }
+  });
+
+  // Remove the temporary-class and re-add duration-0 after 1
+  setTimeout(() => {
+    allElements.forEach((element) => {
+      if (!element.id.startsWith("Table-Checkbox-")) {
+        element.classList.remove("duration-300");
+        element.classList.add("duration-0");
+      }
+    });
+  }, 1);
 
   return (
     <div

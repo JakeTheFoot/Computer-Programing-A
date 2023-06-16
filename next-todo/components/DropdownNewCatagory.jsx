@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-function Dropdown({
+function DropdownNewCatagory({
   title,
   options,
   className,
@@ -232,4 +232,4 @@ function Dropdown({
   );
 }
 
-export default Dropdown;
+export default DropdownNewCatagory;

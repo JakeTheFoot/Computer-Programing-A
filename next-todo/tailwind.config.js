@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         // Define the columns to be 2fr 1fr 1fr
-        custom: "2fr 1fr 1fr",
+        custom: "12fr 6fr 1fr",
       },
       width: {
         // Define the width of the grid
@@ -34,7 +34,11 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      display: ["group-hover"],
+    },
+  },
   plugins: [
     function ({ addUtilities, e }) {
       const utilities = {};

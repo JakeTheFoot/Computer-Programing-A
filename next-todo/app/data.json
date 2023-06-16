@@ -7,22 +7,28 @@
     ], 
     "tasks": [
         {
-            "name": "task1",
-            "category": "category1",
+            "name": "Take out laundry",
+            "category": "Chores",
             "description": "this is task1",
             "completed": false
         },
         {
-            "name": "task2",
-            "category": "category2",
+            "name": "Eat healthier",
+            "category": "Goals",
             "description": "this is task2",
+            "completed": true
+        },
+        {
+            "name": "Call John about buisness finances to discuss EBITA",
+            "category": "Calls to make",
+            "description": "this is task3",
             "completed": false
         },
         {
-            "name": "task3",
-            "category": "category3",
+            "name": "Do the dishes",
+            "category": "Chores",
             "description": "this is task3",
-            "completed": false
+            "completed": true
         }
     ]
 }
