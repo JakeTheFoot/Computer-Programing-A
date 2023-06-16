@@ -46,7 +46,7 @@ const Dropdown = ({ title, options }) => {
       </div>
 
       <div
-        className={`origin-top-left absolute left-0 w-[350px] transform transition ease-out duration-100 overflow-hidden ${dropdownStyle}`}
+        className={`origin-top-left absolute left-0 w-[295px] transform transition ease-out duration-100 overflow-hidden ${dropdownStyle}`}
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="options-menu"
@@ -58,7 +58,7 @@ const Dropdown = ({ title, options }) => {
           <button
             key={"All Categories"}
             type="button"
-            className="block w-full h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light bg-grey dark:bg-super-dark-grey rounded-t-[8px]"
+            className="block w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light bg-grey dark:bg-super-dark-grey rounded-t-[8px]"
             role="menuitem"
             onClick={() => {
               setSelectedOption("All Categories");
@@ -71,7 +71,7 @@ const Dropdown = ({ title, options }) => {
             <button
               key={option}
               type="button"
-              className="block w-full h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light"
+              className="block w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light"
               role="menuitem"
               onClick={() => {
                 setSelectedOption(option);

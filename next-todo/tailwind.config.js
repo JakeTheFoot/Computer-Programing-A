@@ -34,11 +34,7 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {
-      display: ["group-hover"],
-    },
-  },
+  variants: {},
   plugins: [
     function ({ addUtilities, e }) {
       const utilities = {};

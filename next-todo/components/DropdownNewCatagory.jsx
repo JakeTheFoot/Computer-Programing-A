@@ -145,6 +145,7 @@ function DropdownNewCatagory({
                   onClick={(e) => {
                     e.stopPropagation();
                     setIsEditing(index);
+                    setValue(option);
                     forceRender(!render);
                   }}
                 >
