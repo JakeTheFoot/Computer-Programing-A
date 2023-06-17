@@ -185,13 +185,18 @@ const Todo = () => {
             isEditing[0] !== i ? (
               <React.Fragment key={i + 1}>
                 <div
-                  className={`p-4 border-[0.75px] max-w-[calc(316px+4rem)] dark:text-white relative ${
+                  className={`p-4 py-3 border-[0.75px] max-w-[calc(316px+4rem)] dark:text-white relative ${
                     i === data.tasks.length - 1
                       ? "border-b-[1.5px] rounded-es-[10px]"
                       : ""
                   } border-l-[1.5px] border-medium-grey  h-[75px] flex justify-start items-center`}
                 >
-                  {task.name}
+                  <div
+                    className="hide-scrollbar overflow-y-scroll w-full h-full flex items-center"
+                    id={"taskName-" + i}
+                  >
+                    {task.name}
+                  </div>
                   <button
                     className="w-[10px] h-[40px] rounded-full rounded-ee-none rounded-se-none bg-main-purple absolute top-[17.5px] left-[-11.5px]"
                     onClick={() => {
@@ -205,7 +210,9 @@ const Todo = () => {
                     i === data.tasks.length - 1 ? "border-b-[1.5px]" : ""
                   } border-medium-grey h-[75px] flex justify-start items-center`}
                 >
-                  {task.category}
+                  <div className="hide-scrollbar overflow-y-scroll w-full h-full max-w-[143px] flex items-center">
+                    {task.category}
+                  </div>
                 </div>
                 <div
                   className={`group p-4 border-[0.75px] ${
@@ -239,29 +246,34 @@ const Todo = () => {
                       : ""
                   } border-l-[1.5px] border-medium-grey  h-[75px] flex justify-start items-center`}
                 >
-                  <input
-                    className="w-[316px] focus:outline-0 bg-white bg-opacity-0 dark:text-white overflow-y-scroll"
-                    value={value0}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === " ") {
-                        e.preventDefault();
-                        setValue0(value + " ");
-                      }
-                      if (e.key === "Enter") {
+                  <div className="hide-scrollbar overflow-y-scroll w-full h-full flex items-center">
+                    <input
+                      className="w-[316px] focus:outline-0 bg-white bg-opacity-0 dark:text-white overflow-y-scroll text-left flex items-center"
+                      value={value0}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      onFocus={(e) => {
+                        setValue0(task.name);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === " ") {
+                          e.preventDefault();
+                          setValue0(value0 + " ");
+                        }
+                        if (e.key === "Enter") {
+                          onBlur(e, e.target, data.tasks[i].name, i, 0);
+                        }
+                      }}
+                      autoFocus
+                      onChange={(e) => {
+                        setValue0(e.target.value);
+                      }}
+                      onBlur={(e) => {
                         onBlur(e, e.target, data.tasks[i].name, i, 0);
-                      }
-                    }}
-                    autoFocus
-                    onChange={(e) => {
-                      setValue0(e.target.value);
-                    }}
-                    onBlur={(e) => {
-                      onBlur(e, e.target, option, index);
-                    }}
-                  ></input>
+                      }}
+                    />
+                  </div>
                   <button
                     className="w-[10px] h-[40px] rounded-full rounded-ee-none rounded-se-none bg-main-purple absolute top-[17.5px] left-[-11.5px]"
                     onClick={() => {
@@ -275,7 +287,9 @@ const Todo = () => {
                     i === data.tasks.length - 1 ? "border-b-[1.5px]" : ""
                   } border-medium-grey h-[75px] flex justify-start items-center`}
                 >
-                  {task.category}
+                  <div className="hide-scrollbar overflow-y-scroll w-full h-[75px] max-w-[143px] flex items-center">
+                    {task.category}
+                  </div>
                 </div>
                 <div
                   className={`group p-4 border-[0.75px] ${
@@ -307,7 +321,7 @@ const Todo = () => {
                     i === data.tasks.length - 1
                       ? "border-b-[1.5px] rounded-es-[10px]"
                       : ""
-                  } border-l-[1.5px] border-medium-grey  h-[75px] flex justify-start items-center`}
+                  } border-l-[1.5px] border-medium-grey overflow-y-scroll h-[75px] flex justify-start items-center`}
                 >
                   {task.name}
                   <button
@@ -323,29 +337,34 @@ const Todo = () => {
                     i === data.tasks.length - 1 ? "border-b-[1.5px]" : ""
                   } border-medium-grey h-[75px] flex justify-start items-center`}
                 >
-                  <input
-                    className="w-[120px] mr-4 focus:outline-0 bg-white bg-opacity-0 dark:text-medium-grey dark:hover:text-white"
-                    value={value1}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === " ") {
-                        e.preventDefault();
-                        setValue1(value + " ");
-                      }
-                      if (e.key === "Enter") {
+                  <div className="hide-scrollbar overflow-y-scroll w-[143px] h-full">
+                    <input
+                      className="w-[143px] h-full focus:outline-0 bg-white bg-opacity-0 dark:text-white"
+                      value={value1}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      onFocus={(e) => {
+                        setValue1(task.category);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === " ") {
+                          e.preventDefault();
+                          setValue1(value1 + " ");
+                        }
+                        if (e.key === "Enter") {
+                          onBlur(e, e.target, data.tasks[i].category, i, 1);
+                        }
+                      }}
+                      autoFocus
+                      onChange={(e) => {
+                        setValue1(e.target.value);
+                      }}
+                      onBlur={(e) => {
                         onBlur(e, e.target, data.tasks[i].category, i, 1);
-                      }
-                    }}
-                    autoFocus
-                    onChange={(e) => {
-                      setValue1(e.target.value);
-                    }}
-                    onBlur={(e) => {
-                      onBlur(e, e.target, data.tasks[i].category, index);
-                    }}
-                  ></input>
+                      }}
+                    />
+                  </div>
                 </div>
                 <div
                   className={`group p-4 border-[0.75px] ${
@@ -433,4 +452,5 @@ const Todo = () => {
     </div>
   );
 };
+
 export default Todo;
