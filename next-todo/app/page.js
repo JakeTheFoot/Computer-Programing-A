@@ -37,10 +37,9 @@ const Todo = () => {
   const [isEditing, setIsEditing] = useState([-1, -1]);
   const [value0, setValue0] = useState("");
   const [value1, setValue1] = useState("");
-  const [prevValue, setPrevValue] = useState("");
 
   const onBlur = (e, target, option, index, index2) => {
-    if (e.target.value !== "" && e.target.value !== option) {
+    if (e.target.value !== "") {
       if (!data.categories.includes(e.target.value)) {
         if (index2 === 0) {
           data.tasks[index].name = e.target.value;
@@ -52,8 +51,6 @@ const Todo = () => {
           setIsEditing([-1, -1]);
           setValue1(e.target.value);
         }
-      } else if (prevValue === e.target.value) {
-        alert("This option already exists");
       }
     }
   };
@@ -249,7 +246,8 @@ const Todo = () => {
                 >
                   <div className="hide-scrollbar overflow-y-scroll w-full h-[75px] flex items-center">
                     <input
-                      className="w-[316px] h-[75px] focus:outline-0 bg-white bg-opacity-0 dark:text-white overflow-y-scroll text-left flex items-center"
+                      className="w-[316px] max-w-[316px] h-auto focus:outline-0 bg-white bg-opacity-0 dark:text-white overflow-y-scroll text-left flex items-center"
+                      id={"taskName-" + i}
                       value={value0}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -264,6 +262,7 @@ const Todo = () => {
                         }
                         if (e.key === "Enter") {
                           onBlur(e, e.target, data.tasks[i].name, i, 0);
+                          e.target.blur();
                         }
                       }}
                       autoFocus
@@ -355,6 +354,7 @@ const Todo = () => {
                         }
                         if (e.key === "Enter") {
                           onBlur(e, e.target, data.tasks[i].category, i, 1);
+                          e.target.blur();
                         }
                       }}
                       autoFocus
