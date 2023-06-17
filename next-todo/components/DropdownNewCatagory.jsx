@@ -3,14 +3,14 @@ import React, { useState, useEffect } from "react";
 
 function DropdownNewCatagory({
   title,
-  options,
+  data,
+  setData,
   className,
   setFormValues,
   selectedOption,
   setSelectedOption,
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [optionsSaved, setOptionsSaved] = useState(options);
   const [isEditing, setIsEditing] = useState(-1);
   const [render, forceRender] = useState(false);
   const [value, setValue] = useState("");
@@ -18,8 +18,8 @@ function DropdownNewCatagory({
 
   const onBlur = (e, target, option, index) => {
     if (e.target.value !== "" && e.target.value !== option) {
-      if (!optionsSaved.includes(e.target.value)) {
-        optionsSaved[index] = e.target.value;
+      if (!data.categories.includes(e.target.value)) {
+        data.categories[index] = e.target.value;
         setSelectedOption(e.target.value);
         setPrevValue(e.target.value);
       } else if (prevValue === e.target.value) {
@@ -30,14 +30,6 @@ function DropdownNewCatagory({
     setIsOpen(false);
     setValue(e.target.value);
   };
-
-  // on enter click
-  // if text field is active / focused and enter is clicked
-  // then unfocus the text field and save the value
-
-  useEffect(() => {
-    setOptionsSaved(options);
-  }, [options]);
 
   const chevronStyle = isOpen
     ? "transform rotate-180 text-main-purple"
@@ -93,11 +85,11 @@ function DropdownNewCatagory({
           className="mt-[7px] bg-very-light-grey dark:bg-very-dark-grey rounded-[8px]"
           role="none"
         >
-          {optionsSaved.map((option, index) => (
+          {data.categories.slice(0, -1).map((option, index) => (
             <button
               key={option}
               type="button"
-              className={`w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light flex justify-between ${
+              className={`w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light flex justify-between overflow-x-scroll ${
                 index === 0 ? "pt-[12px] pb-[30px]" : ""
               }`}
               role="menuitem"
@@ -164,17 +156,15 @@ function DropdownNewCatagory({
                   className="z-1 w-[15px] h-[15px ml-[10px]"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setOptionsSaved((prev) => {
-                      let updatedOptions = [...prev];
-                      if (
-                        confirm(
-                          "Are you sure you want to delete this catagory? All tasks in this catagory will be uncategorized."
-                        )
+                    if (
+                      confirm(
+                        "Are you sure you want to delete this catagory? All tasks in this catagory will be uncategorized."
                       )
-                        updatedOptions.splice(index, 1);
-                      return updatedOptions;
-                    });
-                    forceRender(!render);
+                    );
+                    {
+                      data.categories.splice(index, 1);
+                      forceRender(!render);
+                    }
                   }}
                 >
                   <svg
@@ -211,14 +201,17 @@ function DropdownNewCatagory({
             key={"add-new"}
             type="button"
             className={`block w-[295px] h-[45px] text-left px-4 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light bg-grey dark:bg-super-dark-grey rounded-ee-[8px] rounded-es-[8px] ${
-              optionsSaved.length === 0
+              data.categories.length === 1
                 ? "rounded-be-[8px] rounded-bs-[8px]"
                 : ""
             } flex justify-between items-center`}
             role="menuitem"
             onClick={() => {
-              if (optionsSaved.includes("New Category") === false) {
-                setOptionsSaved((prev) => [...prev, "New Category"]);
+              if (data.categories.includes("New Category") === false) {
+                data.categories.push("New Category");
+                data.categories.push(
+                  data.categories.splice(data.categories.length - 2, 1)[0]
+                );
                 forceRender(!render);
               } else {
                 alert("New Task already exists!");
