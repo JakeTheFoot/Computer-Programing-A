@@ -1,31 +1,35 @@
 {
     "name": "Jake",
+    "id": "1",
     "categories": [
         "Chores",
         "Goals",
-        "Calls to make",
-        "Uncategorized"
+        "Calls to make"
     ], 
     "tasks": [
         {
+            "id": "54d59171-5596-4650-b814-c042372bd42a",
             "name": "Take out laundry",
             "category": "Chores",
             "description": "this is task1",
             "completed": false
         },
         {
+            "id": "81d6b698-6337-47ae-b2e5-213403cf2a7f",
             "name": "Eat healthier",
             "category": "Goals",
             "description": "this is task2",
             "completed": true
         },
         {
+            "id": "8d22f579-4657-41f9-8b7a-f1238e3a6ccd",
             "name": "Call John about buisness finances to discuss EBITDA aelkdsfjkal sdjflk sadfjlk ;js sadfljkl fjkas;klj sjl;k dfsl;k jfsal;ajk slk;j sdal;jk aslkjadsf lkj sdfakl jafskjls fasad fllks ;fjafslk jasf dljkasdf kljadsf jljk sadfdsfla sd afs kldflkj dsf kl;jsadfl k;jfsd;l kjsdaf l;adjs sdf;kla djkl;ljkafs as;dfl asf jl",
             "category": "Calls to make jkalfdsjlk asdjf jjklas fjkl ;skajl;fs jkl adfsljk aljk asj fsal;k fsdljk asdfljk dsjlkds ajl kasdj;oi saljks dfl;jk dfsj;o fsdajod fljkk asjkldfj klasdjf",
             "description": "this is task3",
             "completed": false
         },
         {
+            "id": "91da7c85-8475-49aa-8c61-009d2ce34d83",
             "name": "Do the dishes",
             "category": "Chores",
             "description": "this is task3",

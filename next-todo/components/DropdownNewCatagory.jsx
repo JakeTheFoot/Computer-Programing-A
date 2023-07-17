@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 function DropdownNewCatagory({
   title,
   data,
-  setData,
   className,
   setFormValues,
   selectedOption,
@@ -17,7 +16,13 @@ function DropdownNewCatagory({
   const [prevValue, setPrevValue] = useState("");
 
   const onBlur = (e, target, option, index) => {
-    if (e.target.value !== "" && e.target.value !== option) {
+    if (
+      e.target.value !== "" &&
+      e.target.value !== option &&
+      e.target.value.trim() !== "" &&
+      e.target.value !== "Uncategorized" &&
+      e.target.value !== "uncategorized"
+    ) {
       if (!data.categories.includes(e.target.value)) {
         data.categories[index] = e.target.value;
         setSelectedOption(e.target.value);
@@ -85,7 +90,7 @@ function DropdownNewCatagory({
           className="mt-[7px] bg-very-light-grey dark:bg-very-dark-grey rounded-[8px]"
           role="none"
         >
-          {data.categories.slice(0, -1).map((option, index) => (
+          {data.categories.map((option, index) => (
             <button
               key={option}
               type="button"
@@ -163,7 +168,15 @@ function DropdownNewCatagory({
                     );
                     {
                       data.categories.splice(index, 1);
+                      if (data.tasks.includes(option)) {
+                        data.tasks.forEach((task, index) => {
+                          if (task.category === option) {
+                            data.tasks[index].category = "Uncategorized";
+                          }
+                        });
+                      }
                       forceRender(!render);
+                      console.log(data);
                     }
                   }}
                 >

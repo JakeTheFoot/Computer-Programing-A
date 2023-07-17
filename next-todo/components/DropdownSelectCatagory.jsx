@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { render } from "react-dom";
 
-const Dropdown = ({ title, options }) => {
+const Dropdown = ({ options, selectedCategory, setSelectedCategory }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const chevronStyle = isOpen
     ? "transform rotate-180 text-main-purple"
@@ -27,7 +27,7 @@ const Dropdown = ({ title, options }) => {
           aria-expanded="true"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {selectedOption}
+          {selectedCategory}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={`h-4 w-4 ml-auto transition-transform duration-200 ease-in-out transition-text-color ${chevronStyle}`}
@@ -61,11 +61,23 @@ const Dropdown = ({ title, options }) => {
             className="block w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light bg-grey dark:bg-super-dark-grey rounded-t-[8px]"
             role="menuitem"
             onClick={() => {
-              setSelectedOption("All Categories");
+              setSelectedCategory("All Categories");
               setIsOpen(false);
             }}
           >
             All Categories
+          </button>
+          <button
+            key={"Uncategorized"}
+            type="button"
+            className="block w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light bg-grey dark:bg-super-dark-grey rounded-t-[8px]"
+            role="menuitem"
+            onClick={() => {
+              setSelectedCategory("Uncategorized");
+              setIsOpen(false);
+            }}
+          >
+            Uncategorized
           </button>
           {options.map((option) => (
             <button
@@ -74,7 +86,7 @@ const Dropdown = ({ title, options }) => {
               className="block w-[295px] h-[40px] text-left px-4 py-2 text-sm font-sans text-medium-grey hover:text-lines-dark dark:hover:text-lines-light"
               role="menuitem"
               onClick={() => {
-                setSelectedOption(option);
+                setSelectedCategory(option);
                 setIsOpen(false);
               }}
             >

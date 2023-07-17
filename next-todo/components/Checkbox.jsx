@@ -11,12 +11,8 @@ const CheckIcon = () => (
   </svg>
 );
 
-const Checkbox = ({ onToggle = () => {}, isChecked = false, children }) => {
+const Checkbox = ({ isChecked = false, onClick }) => {
   const [checked, setChecked] = useState(isChecked === true);
-
-  useEffect(() => {
-    onToggle(checked ? "true" : "false");
-  }, [checked, onToggle]);
 
   const checkboxClasses = checked
     ? "w-[40px] h-[40px] rounded-[2px] border flex justify-center items-center pt-[1.5px] pl-[0.2px] bg-main-purple border-main-purple"
@@ -26,7 +22,10 @@ const Checkbox = ({ onToggle = () => {}, isChecked = false, children }) => {
     ? "py-[12.5px] font-[550] font-sans text-[12.5px] line-through text-gray-400"
     : "py-[12.5px] font-[550] font-sans text-[12.5px] text-black dark:text-white";
 
-  const handleOnPress = () => setChecked(!checked);
+  const handleOnPress = () => {
+    setChecked(!checked);
+    onClick();
+  };
 
   return (
     <label className="flex items-center cursor-pointer dark:text-white">

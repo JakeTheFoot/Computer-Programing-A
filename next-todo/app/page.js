@@ -14,9 +14,7 @@ import EditButton from "@/components/specific/EditButton.jsx";
 const Todo = () => {
   // Form States
   const [data, setData] = useState(tempData);
-  const [selectedOption, setSelectedOption] = useState(
-    data.categories[data.categories.length - 1]
-  );
+  const [selectedOption, setSelectedOption] = useState("All Categories");
   const [titleInputValue, setTitleInputValue] = useState("");
   const [descriptionInputValue, setDescriptionInputValue] = useState("");
   const [descriptionHasInteracted, setDescriptionHasInteracted] =
@@ -30,13 +28,21 @@ const Todo = () => {
 
   // Delete Button States
   const [buttonY, setButtonY] = useState(-75);
-  const [buttonY2, setButtonY2] = useState(-75);
   const [targetedTask, setTargetedTask] = useState(0);
 
   // Edit Button States
   const [isEditing, setIsEditing] = useState([-1, -1]);
+  const [targetedTask2, setTargetedTask2] = useState(0);
+  const [buttonY2, setButtonY2] = useState(-75);
   const [value0, setValue0] = useState("");
   const [value1, setValue1] = useState("");
+
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const filteredTasks = data.tasks.filter(
+    (task) =>
+      task.category === selectedCategory ||
+      selectedCategory === "All Categories"
+  );
 
   const onBlur = (e, target, option, index, index2) => {
     if (e.target.value !== "") {
@@ -69,8 +75,8 @@ const Todo = () => {
       <div className="flex flex-col items-center justify-start h-[100vh] absolute top-0">
         <div className="flex flex-col items-center w-[100%] justify-center h-[250px] px-[20px]">
           <div className="flex justify-between items-center w-[100%] max-w-[600px] mt-[50px]">
-            <h1 className="font-bold text-[70px] mb-[13px] dark:text-white">
-              Todo App
+            <h1 className="font-bold text-[70px] mb-[13px] dark:text-white w-[405px]">
+              To-Do App
             </h1>
             <LightDarkToggle className="mt-[5px] ml-[50px]" />
           </div>
@@ -118,7 +124,6 @@ const Todo = () => {
                   className="w-[100px] h-[50px] bg-main-purple text-white rounded-[4px] border-[1.5px] border-medium-grey font-medium text-[18px] absolute top-[60.5px] right-0"
                   onClick={() => {
                     formValues.category = selectedOption;
-                    console.log(formValues);
                     setSelectedOption("Uncategorized");
                     setTitleInputValue("");
                     setTitleHasInteracted(false);
@@ -143,7 +148,8 @@ const Todo = () => {
           <h1 className="text-[40px] font-bold dark:text-white">Tasks</h1>
           <DropdownSelectCatagory
             options={data.categories}
-            title="Sort By Catagory"
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
           />
         </div>
         <div
@@ -153,7 +159,7 @@ const Todo = () => {
           <React.Fragment key={0}>
             <div
               className={`px-4 border-[0.75px] max-w-[380px] dark:text-white border-t-[1.5px] rounded-ss-[10px] ${
-                data.tasks.length === 0
+                filteredTasks.length === 0
                   ? "border-b-[1.5px] rounded-es-[10px]"
                   : ""
               } border-l-[1.5px] border-medium-grey  h-[75px] flex justify-start items-center font-bold text-[25px]`}
@@ -163,14 +169,14 @@ const Todo = () => {
             <div
               className={`px-4 border-[0.75px] dark:text-white border-t-[1.5px]
                   ${
-                    data.tasks.length === 0 ? "border-b-[1.5px]" : ""
+                    filteredTasks.length === 0 ? "border-b-[1.5px]" : ""
                   } border-medium-grey h-[75px] flex justify-start items-center font-bold text-[25px]`}
             >
               Category
             </div>
             <div
               className={`group px-4 border-[0.75px] border-t-[1.5px] rounded-se-[10px] ${
-                data.tasks.length === 0
+                filteredTasks.length === 0
                   ? "border-b-[1.5px] rounded-ee-[10px]"
                   : ""
               } border-r-[1.5px] border-medium-grey h-[75px] flex justify-center items-center relative font-bold text-[25px] dark:text-white`}
@@ -179,219 +185,136 @@ const Todo = () => {
               ?
             </div>
           </React.Fragment>
-          {data.tasks.map((task, i) =>
-            isEditing[0] !== i ? (
-              <React.Fragment key={i + 1}>
-                <div
-                  className={`px-4 py-3 border-[0.75px] max-w-[380px] dark:text-white relative ${
-                    i === data.tasks.length - 1
-                      ? "border-b-[1.5px] rounded-es-[10px]"
-                      : ""
-                  } border-l-[1.5px] border-medium-grey  h-[75px] flex justify-start items-center`}
-                >
+          {data.tasks.map((task, i) => {
+            if (filteredTasks.includes(task)) {
+              const isLast = task === filteredTasks[filteredTasks.length - 1];
+              return (
+                <React.Fragment key={i + 1}>
                   <div
-                    className="hide-scrollbar overflow-y-scroll w-full h-full max-w-[380px] flex items-center"
-                    id={"taskName-" + i}
+                    className={`px-4 py-3 border-[0.75px] w-[380px] max-w-[380px] dark:text-white relative ${
+                      isLast ? "border-b-[1.5px] rounded-es-[10px]" : ""
+                    } border-l-[1.5px] border-medium-grey  h-[75px] flex justify-start items-center`}
                   >
-                    {task.name}
-                  </div>
-                  <button
-                    className="w-[10px] h-[40px] rounded-full rounded-ee-none rounded-se-none bg-main-purple absolute top-[17.5px] left-[-11.5px]"
-                    onClick={() => {
-                      setButtonY2((i + 1) * 75 - 75);
-                      setTargetedTask(i + 1);
-                    }}
-                  />
-                </div>
-                <div
-                  className={`px-4 border-[0.75px] dark:text-white ${
-                    i === data.tasks.length - 1 ? "border-b-[1.5px]" : ""
-                  } border-medium-grey h-[75px] flex justify-start items-center`}
-                >
-                  <div className="hide-scrollbar overflow-y-scroll w-full h-full max-w-[143px] flex items-center">
-                    {task.category}
-                  </div>
-                </div>
-                <div
-                  className={`group px-4 border-[0.75px] ${
-                    i === data.tasks.length - 1
-                      ? "border-b-[1.5px] rounded-ee-[10px]"
-                      : ""
-                  } border-r-[1.5px] border-medium-grey h-[75px] flex justify-center items-center relative`}
-                  id={i + 1}
-                >
-                  <Checkbox
-                    isChecked={task.completed}
-                    onClick={() => {
-                      data.tasks[i + 1].completed = !task.completed;
-                    }}
-                  />
-                  <button
-                    className="w-[10px] h-[40px] rounded-full rounded-ss-none rounded-es-none bg-red absolute top-[17.5px] right-[-11.5px]"
-                    onClick={() => {
-                      setButtonY((i + 1) * 75 - 75);
-                      setTargetedTask(i + 1);
-                    }}
-                  />
-                </div>
-              </React.Fragment>
-            ) : isEditing[1] === 0 ? (
-              <React.Fragment key={i + 1}>
-                <div
-                  className={`px-4 border-[0.75px] max-w-[380px] dark:text-white relative ${
-                    i === data.tasks.length - 1
-                      ? "border-b-[1.5px] rounded-es-[10px]"
-                      : ""
-                  } border-l-[1.5px] border-medium-grey  h-[75px] flex justify-start items-center`}
-                >
-                  <div className="hide-scrollbar overflow-y-scroll w-full h-[75px] flex items-center">
-                    <input
-                      className="w-[316px] max-w-[316px] h-auto focus:outline-0 bg-white bg-opacity-0 dark:text-white overflow-y-scroll text-left flex items-center"
-                      id={"taskName-" + i}
-                      value={value0}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
-                      onFocus={(e) => {
-                        setValue0(task.name);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === " ") {
-                          e.preventDefault();
-                          setValue0(value0 + " ");
-                        }
-                        if (e.key === "Enter") {
-                          onBlur(e, e.target, data.tasks[i].name, i, 0);
-                          e.target.blur();
-                        }
-                      }}
-                      autoFocus
-                      onChange={(e) => {
-                        setValue0(e.target.value);
-                      }}
-                      onBlur={(e) => {
-                        onBlur(e, e.target, data.tasks[i].name, i, 0);
+                    {isEditing[0] !== i || isEditing[1] === 1 ? (
+                      <div
+                        className="hide-scrollbar overflow-y-scroll w-full h-auto max-h-[100%] flex"
+                        id={"taskName-" + i}
+                      >
+                        {task.name}
+                      </div>
+                    ) : (
+                      <div className="hide-scrollbar overflow-y-scroll w-full h-auto max-h-[100%] flex">
+                        <input
+                          className="w-[380px] h-[24px] focus:outline-0 bg-white bg-opacity-0 dark:text-white overflow-x-hidden text-left flex items-center"
+                          id={"taskName-" + i}
+                          value={value0}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                          onFocus={(e) => {
+                            setValue0(task.name);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === " ") {
+                              e.preventDefault();
+                              setValue0(value0 + " ");
+                            }
+                            if (e.key === "Enter") {
+                              onBlur(e, e.target, data.tasks[i].name, i, 0);
+                              e.target.blur();
+                            }
+                          }}
+                          autoFocus
+                          onChange={(e) => {
+                            setValue0(e.target.value);
+                          }}
+                          onBlur={(e) => {
+                            onBlur(e, e.target, data.tasks[i].name, i, 0);
+                          }}
+                        />
+                      </div>
+                    )}
+                    <button
+                      className="w-[10px] h-[40px] rounded-full rounded-ee-none rounded-se-none bg-main-purple absolute top-[17.5px] left-[-11.5px]"
+                      onClick={() => {
+                        setButtonY2((i + 1) * 75 - 75);
+                        setTargetedTask2(i + 1);
                       }}
                     />
                   </div>
-                  <button
-                    className="w-[10px] h-[40px] rounded-full rounded-ee-none rounded-se-none bg-main-purple absolute top-[17.5px] left-[-11.5px]"
-                    onClick={() => {
-                      setButtonY2((i + 1) * 75 - 75);
-                      setTargetedTask(i + 1);
-                    }}
-                  />
-                </div>
-                <div
-                  className={`px-4 border-[0.75px] dark:text-white ${
-                    i === data.tasks.length - 1 ? "border-b-[1.5px]" : ""
-                  } border-medium-grey h-[75px] flex justify-start items-center`}
-                >
-                  <div className="hide-scrollbar overflow-y-scroll w-full h-[75px] max-w-[143px] flex items-center">
-                    {task.category}
-                  </div>
-                </div>
-                <div
-                  className={`group px-4 border-[0.75px] ${
-                    i === data.tasks.length - 1
-                      ? "border-b-[1.5px] rounded-ee-[10px]"
-                      : ""
-                  } border-r-[1.5px] border-medium-grey h-[75px] flex justify-center items-center relative`}
-                  id={i + 1}
-                >
-                  <Checkbox
-                    isChecked={task.completed}
-                    onClick={() => {
-                      data.tasks[i + 1].completed = !task.completed;
-                    }}
-                  />
-                  <button
-                    className="w-[10px] h-[40px] rounded-full rounded-ss-none rounded-es-none bg-red absolute top-[17.5px] right-[-11.5px]"
-                    onClick={() => {
-                      setButtonY((i + 1) * 75 - 75);
-                      setTargetedTask(i + 1);
-                    }}
-                  />
-                </div>
-              </React.Fragment>
-            ) : (
-              <React.Fragment key={i + 1}>
-                <div
-                  className={`px-4 border-[0.75px] dark:text-white relative ${
-                    i === data.tasks.length - 1
-                      ? "border-b-[1.5px] rounded-es-[10px]"
-                      : ""
-                  } border-l-[1.5px] border-medium-grey overflow-y-scroll h-[75px] flex items-center`}
-                >
-                  {task.name}
-                  <button
-                    className="w-[10px] h-[40px] rounded-full rounded-ee-none rounded-se-none bg-main-purple absolute top-[17.5px] left-[-11.5px]"
-                    onClick={() => {
-                      setButtonY2((i + 1) * 75 - 75);
-                      setTargetedTask(i + 1);
-                    }}
-                  />
-                </div>
-                <div
-                  className={`px-4 border-[0.75px] dark:text-white ${
-                    i === data.tasks.length - 1 ? "border-b-[1.5px]" : ""
-                  } border-medium-grey h-[75px] flex justify-start items-center`}
-                >
-                  <div className="hide-scrollbar overflow-y-scroll w-[143px] h-full">
-                    <input
-                      className="w-[143px] h-full focus:outline-0 bg-white bg-opacity-0 dark:text-white"
-                      value={value1}
-                      onClick={(e) => {
-                        e.stopPropagation();
+                  {isEditing[0] !== i || isEditing[1] === 0 ? (
+                    <div
+                      className={`px-4 py-3 border-[0.75px] dark:text-white ${
+                        isLast ? "border-b-[1.5px]" : ""
+                      } border-medium-grey h-[75px] flex justify-start items-center`}
+                    >
+                      <div className="hide-scrollbar overflow-y-scroll w-full max-w-[114px] h-auto max-h-[100%] flex flex-col">
+                        {task.category}
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className={`border-[0.75px] dark:text-white ${
+                        isLast ? "border-b-[1.5px]" : ""
+                      } border-medium-grey h-[75px] w-[147.5px] flex justify-start items-center`}
+                    >
+                      <div className="hide-scrollbar overflow-y-scroll w-full h-auto max-h-[100%] flex ">
+                        <input
+                          className="w-[143px] max-w-[143px] h-auto focus:outline-0 bg-white bg-opacity-0 dark:text-white overflow-y-scroll text-left flex items-center mx-4"
+                          id={"taskName-" + i}
+                          value={value1}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                          onFocus={(e) => {
+                            setValue1(task.category);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === " ") {
+                              e.preventDefault();
+                              setValue1(value1 + " ");
+                            }
+                            if (e.key === "Enter") {
+                              onBlur(e, e.target, data.tasks[i].category, i, 1);
+                              e.target.blur();
+                            }
+                          }}
+                          autoFocus
+                          onChange={(e) => {
+                            setValue1(e.target.value);
+                          }}
+                          onBlur={(e) => {
+                            onBlur(e, e.target, data.tasks[i].category, i, 1);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                  <div
+                    className={`group px-4 border-[0.75px] ${
+                      isLast ? "border-b-[1.5px] rounded-ee-[10px]" : ""
+                    } border-r-[1.5px] border-medium-grey h-[75px] flex justify-center items-center relative`}
+                    id={i + 1}
+                  >
+                    <Checkbox
+                      isChecked={task.completed}
+                      onClick={() => {
+                        data.tasks[i].completed = !data.tasks[i].completed;
+                        console.log(data.tasks[i].completed);
                       }}
-                      onFocus={(e) => {
-                        setValue1(task.category);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === " ") {
-                          e.preventDefault();
-                          setValue1(value1 + " ");
-                        }
-                        if (e.key === "Enter") {
-                          onBlur(e, e.target, data.tasks[i].category, i, 1);
-                          e.target.blur();
-                        }
-                      }}
-                      autoFocus
-                      onChange={(e) => {
-                        setValue1(e.target.value);
-                      }}
-                      onBlur={(e) => {
-                        onBlur(e, e.target, data.tasks[i].category, i, 1);
+                    />
+                    <button
+                      className="w-[10px] h-[40px] rounded-full rounded-ss-none rounded-es-none bg-red absolute top-[17.5px] right-[-11.5px]"
+                      onClick={() => {
+                        setButtonY((i + 1) * 75 - 75);
+                        setTargetedTask(i + 1);
                       }}
                     />
                   </div>
-                </div>
-                <div
-                  className={`group px-4 border-[0.75px] ${
-                    i === data.tasks.length - 1
-                      ? "border-b-[1.5px] rounded-ee-[10px]"
-                      : ""
-                  } border-r-[1.5px] border-medium-grey h-[75px] flex justify-center items-center relative`}
-                  id={i + 1}
-                >
-                  <Checkbox
-                    isChecked={task.completed}
-                    onClick={() => {
-                      data.tasks[i + 1].completed = !task.completed;
-                    }}
-                  />
-                  <button
-                    className="w-[10px] h-[40px] rounded-full rounded-ss-none rounded-es-none bg-red absolute top-[17.5px] right-[-11.5px]"
-                    onClick={() => {
-                      setButtonY((i + 1) * 75 - 75);
-                      setTargetedTask(i + 1);
-                    }}
-                  />
-                </div>
-              </React.Fragment>
-            )
-          )}
+                </React.Fragment>
+              );
+            }
+          })}
         </div>
         <animated.button
           className="transition-all duration-300 ease-in-out absolute right-[-85px] flex"
@@ -404,6 +327,7 @@ const Todo = () => {
               setButtonY(-75);
               setButtonY2(-75);
               setTargetedTask(0);
+              setTargetedTask2(0);
             }
           }}
         >
@@ -415,8 +339,8 @@ const Todo = () => {
             top: y2.to((y2) => 155 + y2),
           }}
           onClick={() => {
-            if (targetedTask !== 0) {
-              setIsEditing([targetedTask - 1, 0]);
+            if (targetedTask2 !== 0) {
+              setIsEditing([targetedTask2 - 1, 0]);
             }
           }}
         >
